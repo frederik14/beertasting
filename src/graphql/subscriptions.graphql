@@ -1,0 +1,247 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateBeerTasting {
+  onCreateBeerTasting {
+    id
+    host
+    Beers {
+      items {
+        id
+        name
+        alcohol
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateBeerTasting {
+  onUpdateBeerTasting {
+    id
+    host
+    Beers {
+      items {
+        id
+        name
+        alcohol
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteBeerTasting {
+  onDeleteBeerTasting {
+    id
+    host
+    Beers {
+      items {
+        id
+        name
+        alcohol
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateBeer {
+  onCreateBeer {
+    id
+    name
+    alcohol
+    description
+    BeerTasting {
+      id
+      host
+      Beers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    BeerRatings {
+      items {
+        id
+        userName
+        smell
+        color
+        branding
+        taste
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateBeer {
+  onUpdateBeer {
+    id
+    name
+    alcohol
+    description
+    BeerTasting {
+      id
+      host
+      Beers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    BeerRatings {
+      items {
+        id
+        userName
+        smell
+        color
+        branding
+        taste
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteBeer {
+  onDeleteBeer {
+    id
+    name
+    alcohol
+    description
+    BeerTasting {
+      id
+      host
+      Beers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    BeerRatings {
+      items {
+        id
+        userName
+        smell
+        color
+        branding
+        taste
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateBeerRating {
+  onCreateBeerRating {
+    id
+    userName
+    Beer {
+      id
+      name
+      alcohol
+      description
+      BeerTasting {
+        id
+        host
+        createdAt
+        updatedAt
+      }
+      BeerRatings {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    smell
+    color
+    branding
+    taste
+    description
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateBeerRating {
+  onUpdateBeerRating {
+    id
+    userName
+    Beer {
+      id
+      name
+      alcohol
+      description
+      BeerTasting {
+        id
+        host
+        createdAt
+        updatedAt
+      }
+      BeerRatings {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    smell
+    color
+    branding
+    taste
+    description
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteBeerRating {
+  onDeleteBeerRating {
+    id
+    userName
+    Beer {
+      id
+      name
+      alcohol
+      description
+      BeerTasting {
+        id
+        host
+        createdAt
+        updatedAt
+      }
+      BeerRatings {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    smell
+    color
+    branding
+    taste
+    description
+    createdAt
+    updatedAt
+  }
+}

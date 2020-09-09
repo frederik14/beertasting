@@ -1,0 +1,25 @@
+type BeerTasting @model {
+  id: ID!
+  host: String!
+  Beers: [Beer] @connection(name: "BeersAtTasting")
+}
+
+type Beer @model {
+  id: ID!
+  name: String!
+  alcohol: Float
+  description:String
+  BeerTasting: BeerTasting @connection(name: "BeersAtTasting")
+  BeerRatings: [BeerRating] @connection(name: "BeerRatings")
+}
+
+type BeerRating @model {
+  id: ID!
+  userName: String!
+  Beer: Beer @connection(name: "BeerRatings")
+  smell: Float
+  color: Float
+  branding: Float
+  taste: Float
+  description: String
+}

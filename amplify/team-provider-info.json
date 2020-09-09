@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-zbldash-dev-185806-authRole",
+      "UnauthRoleArn": "arn:aws:iam::981653717282:role/amplify-zbldash-dev-185806-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::981653717282:role/amplify-zbldash-dev-185806-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-zbldash-dev-185806-deployment",
+      "UnauthRoleName": "amplify-zbldash-dev-185806-unauthRole",
+      "StackName": "amplify-zbldash-dev-185806",
+      "StackId": "arn:aws:cloudformation:eu-west-1:981653717282:stack/amplify-zbldash-dev-185806/78db65a0-f1f4-11ea-bf9e-0ad60d2de4ed",
+      "AmplifyAppId": "d1tei8w02d42zx"
+    },
+    "categories": {
+      "auth": {
+        "zbldash6c0bbd1e": {}
+      }
+    }
+  }
+}

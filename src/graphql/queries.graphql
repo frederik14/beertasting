@@ -1,0 +1,155 @@
+# this is an auto generated file. This will be overwritten
+query GetBeerTasting($id: ID!) {
+  getBeerTasting(id: $id) {
+    id
+    host
+    Beers {
+      items {
+        id
+        name
+        alcohol
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListBeerTastings(
+  $filter: ModelBeerTastingFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBeerTastings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      host
+      Beers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetBeer($id: ID!) {
+  getBeer(id: $id) {
+    id
+    name
+    alcohol
+    description
+    BeerTasting {
+      id
+      host
+      Beers {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    BeerRatings {
+      items {
+        id
+        userName
+        smell
+        color
+        branding
+        taste
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListBeers(
+  $filter: ModelBeerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBeers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      alcohol
+      description
+      BeerTasting {
+        id
+        host
+        createdAt
+        updatedAt
+      }
+      BeerRatings {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetBeerRating($id: ID!) {
+  getBeerRating(id: $id) {
+    id
+    userName
+    Beer {
+      id
+      name
+      alcohol
+      description
+      BeerTasting {
+        id
+        host
+        createdAt
+        updatedAt
+      }
+      BeerRatings {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    smell
+    color
+    branding
+    taste
+    description
+    createdAt
+    updatedAt
+  }
+}
+query ListBeerRatings(
+  $filter: ModelBeerRatingFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBeerRatings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      userName
+      Beer {
+        id
+        name
+        alcohol
+        description
+        createdAt
+        updatedAt
+      }
+      smell
+      color
+      branding
+      taste
+      description
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

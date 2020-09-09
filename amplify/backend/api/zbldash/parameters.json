@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "zbldash",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authzbldash6c0bbd1e",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
