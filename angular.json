@@ -28,10 +28,10 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -89,6 +89,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -141,5 +142,8 @@
       }
     }
   },
-  "defaultProject": "zbl-dash"
+  "defaultProject": "zbl-dash",
+  "cli": {
+    "analytics": "6768fa3f-235c-4c3e-b662-2412f3398a86"
+  }
 }
