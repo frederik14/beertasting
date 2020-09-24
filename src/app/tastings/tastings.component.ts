@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { APIService} from './../API.service'
+import { AddTastingComponent } from './../add-tasting/add-tasting.component'
 
 export interface Beer {
   name: string;
@@ -12,40 +14,52 @@ export interface Beer {
   styleUrls: ['./tastings.component.scss']
 })
 export class TastingsComponent implements OnInit {
-  createTasting:FormGroup;
+  
   beersArray : Beer [] = []
-
-  constructor(public formBuilder : FormBuilder) { }
+  tastings: any []
+  beers: any [] = []
+  
+  constructor(public db: APIService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.createTasting = this.formBuilder.group({
-      location: ['', [Validators.required]],
-      beers: this.formBuilder.array([
-        this.getBeer()
-     ])
+    this.getTastings()
+    this.getTastingsBeers()
+    this.db.OnDeleteBeerTastingListener.subscribe({next: (deleteListener) => {
+        console.log('delete listener: ', deleteListener)
+        this.tastings = this.tastings.filter(obj => obj.id != deleteListener['value'].data.onDeleteBeerTasting.id);
+      }
+    })
+    this.db.OnCreateBeerTastingListener.subscribe({next: (createListener) => {
+        console.log('create listener: ', createListener)
+        this.tastings.push(createListener['value'].data.onCreateBeerTasting)
+      }
+    })
+    this.db.OnCreateBeerListener.subscribe({next: (createListener) => {
+        console.log('create listener: ', createListener)
+        this.beers.push(createListener['value'].data.onCreateBeer)
+      }
+    })
+  }
+
+  async getTastings() {
+    const response = await this.db.ListBeerTastings()
+    console.log(response)
+    this.tastings = response.items
+  }
+
+  async getTastingsBeers() {
+    const response = await this.db.ListBeers()
+    this.beers = response.items
+    console.log(this.beers)
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddTastingComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 
-  createNewTasting () {
-
-  }
-
-  getBeer() {
-    const numberPatern = '^[0-9.,]+$';
-    return this.formBuilder.group({
-      name: ['', Validators.required],
-      alcohol: 5,
-    });
-  }
-
-  addBeer() {
-    const control = <FormArray>this.createTasting.get('beers')['controls'];
-    console.log(control)
-    control.push(this.getBeer());
-  }
-
-  removeBeer(i: number) {
-    const control = <FormArray>this.createTasting.controls['beers'];
-    control.removeAt(i);
-  }
 }

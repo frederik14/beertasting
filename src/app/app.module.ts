@@ -19,15 +19,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule}  from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { TastingComponent } from './tasting/tasting.component';
+import { MatCardModule } from '@angular/material/card';
+import { AddTastingComponent } from './add-tasting/add-tasting.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RankingComponent,
-    TastingsComponent
+    TastingsComponent,
+    TastingComponent,
+    AddTastingComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +41,28 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     AmplifyUIAngularModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    FlexLayoutModule
+  ],
+  exports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AmplifyUIAngularModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

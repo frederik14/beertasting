@@ -1,28 +1,9 @@
-<h1>Add tasting</h1>
-
-<form [formGroup]="createTasting" (submit)="createNewTasting()">
-    <mat-form-field appearance="fill">
-        <mat-label>Location</mat-label>
-        <input matInput name="location" formControlName="location" type="text">
-    </mat-form-field>
-    <div formArrayName="beers">
-        <div *ngFor="let beer of createTasting.get('beers')['controls']; let i=index" [formGroupName]="i">
-            <mat-form-field> 
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" name="name" formControlName="name" required>           
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Alcohol</mat-label> 
-                <input matInput placeholder="alcohol" name="alcohol"  formControlName="alcohol">            
-            </mat-form-field>
-            <button type="button" *ngIf="createTasting.get('beers')['controls'].length > 1" (click)="removeBeer(i)">
-                <mat-icon>delete forever</mat-icon>
-            </button>
-        </div>
+<div class="main">
+  <h1>Tastings</h1>
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div *ngFor="let tasting of tastings" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <app-tasting [tasting] = "tasting" [beers] = "beers"></app-tasting>
     </div>
-    <button type="button" mat-raised-button (click)="addBeer()">
-        <mat-icon>add box</mat-icon>
-        Add new beer
-    </button>
-    <button type="submit">Create</button>
-</form>
+  </div>
+  <button mat-fab class="addDialog" (click)="openDialog()"><mat-icon>add</mat-icon></button>
+</div>
