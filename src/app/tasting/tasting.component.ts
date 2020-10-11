@@ -16,12 +16,10 @@ export class TastingComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     console.log(this.beers)
     this.tastingsBeers = this.beers.filter(beer => beer?.BeerTasting?.id === this.tasting.id)
-    console.log(this.tastingsBeers)
   }
 
   ngOnChanges(): void {
     this.tastingsBeers = this.beers.filter(beer => beer?.BeerTasting?.id === this.tasting.id)
-    console.log(this.tastingsBeers)
   }
   
   delete() {
