@@ -15,6 +15,13 @@ export enum ModelAttributeTypes {
   _null = "_null"
 }
 
+export type ModelBeerTastingConditionInput = {
+  host?: ModelStringInput | null;
+  and?: Array<ModelBeerTastingConditionInput | null> | null;
+  or?: Array<ModelBeerTastingConditionInput | null> | null;
+  not?: ModelBeerTastingConditionInput | null;
+};
+
 export type ModelIDInput = {
   ne?: string | null;
   eq?: string | null;
@@ -63,6 +70,43 @@ export type ModelBeerTastingFilterInput = {
   and?: Array<ModelBeerTastingFilterInput | null> | null;
   or?: Array<ModelBeerTastingFilterInput | null> | null;
   not?: ModelBeerTastingFilterInput | null;
+};
+
+export type OnCreateBeerSubscription = {
+  __typename: "Beer";
+  id: string;
+  name: string;
+  alcohol: number | null;
+  description: string | null;
+  BeerTasting: {
+    __typename: "BeerTasting";
+    id: string;
+    host: string;
+    Beers: {
+      __typename: "ModelBeerConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  BeerRatings: {
+    __typename: "ModelBeerRatingConnection";
+    items: Array<{
+      __typename: "BeerRating";
+      id: string;
+      userName: string;
+      smell: number | null;
+      color: number | null;
+      branding: number | null;
+      taste: number | null;
+      description: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ListBeerTastingsQuery = {
@@ -156,7 +200,50 @@ export type OnDeleteBeerTastingSubscription = {
 @Injectable({
   providedIn: "root"
 })
-export class APIService {
+export class TastingsService {
+
+  OnCreateBeerListener: Observable<OnCreateBeerSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBeer {
+        onCreateBeer {
+          __typename
+          id
+          name
+          alcohol
+          description
+          BeerTasting {
+            __typename
+            id
+            host
+            Beers {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          BeerRatings {
+            __typename
+            items {
+              __typename
+              id
+              userName
+              smell
+              color
+              branding
+              taste
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBeerSubscription>;
 
   async ListBeerTastings(
     filter?: ModelBeerTastingFilterInput,

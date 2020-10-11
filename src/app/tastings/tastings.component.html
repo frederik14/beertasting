@@ -2,7 +2,7 @@
   <h1>Tastings</h1>
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div *ngFor="let tasting of tastings" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
-        <app-tasting [tasting] = "tasting" [beers] = "beers"></app-tasting>
+        <app-tasting [tasting] = "tasting"></app-tasting>
     </div>
   </div>
   <button mat-fab class="addDialog" (click)="openDialog()"><mat-icon>add</mat-icon></button>

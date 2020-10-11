@@ -8,18 +8,16 @@ import { APIService} from './../API.service'
 })
 export class TastingComponent implements OnInit, OnChanges {
   @Input() tasting:any;
-  @Input() beers:any;
   tastingsBeers
 
   constructor(public db: APIService) { }
 
   ngOnInit(): void {
-    console.log(this.beers)
-    this.tastingsBeers = this.beers.filter(beer => beer?.BeerTasting?.id === this.tasting.id)
+    this.tastingsBeers = this.tasting.Beers.items
   }
 
   ngOnChanges(): void {
-    this.tastingsBeers = this.beers.filter(beer => beer?.BeerTasting?.id === this.tasting.id)
+    this.tastingsBeers = this.tasting.Beers.items
   }
   
   delete() {
