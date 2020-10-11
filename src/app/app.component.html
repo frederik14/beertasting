@@ -1,10 +1,16 @@
-<amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
+<!-- <amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
 
 <ng-container *ngIf="authState === 'signedin' && user">
-    <amplify-sign-out></amplify-sign-out>
-    <div>Hello, {{user.username}}</div>
-</ng-container>
+    <amplify-sign-out></amplify-sign-out> -->
+    <!-- <div>Hello, {{user.username}}</div> -->
+    <!-- <router-outlet></router-outlet>
+</ng-container> -->
 
-<router-outlet></router-outlet>
+<amplify-authenticator>
+    <ng-container>
+        <amplify-sign-out></amplify-sign-out>
+        <router-outlet></router-outlet>
+    </ng-container>
+</amplify-authenticator>
 
 

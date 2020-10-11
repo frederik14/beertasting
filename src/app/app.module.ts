@@ -9,11 +9,10 @@ import { RankingComponent } from './ranking/ranking.component';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
-
 import awsconfig from '../aws-exports';
+
 Amplify.configure(awsconfig);
 
-import { from } from 'rxjs';
 import { TastingsComponent } from './tastings/tastings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
