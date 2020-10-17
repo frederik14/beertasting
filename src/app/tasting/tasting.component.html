@@ -7,11 +7,10 @@
   <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
   <mat-card-content>
     <ol *ngFor="let beer of tastingsBeers;">
-      <li>{{beer.name}} ( {{beer.alcohol}} % vol )</li>
+      <li>{{beer.name}} ( {{beer.alcohol}} % vol ) <button mat-button (click) = "openRateDialog(beer)">rate</button></li>
     </ol>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>join</button>
     <button mat-button (click) = "delete()">Delete</button>
   </mat-card-actions>
 </mat-card>

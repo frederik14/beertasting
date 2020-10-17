@@ -1,5 +1,38 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { RateTastingComponent } from '../rate-tasting/rate-tasting.component';
 import { APIService} from './../API.service'
+
+export type Beer = {
+  __typename: "Beer";
+  id: string;
+  name: string;
+  alcohol: number | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Tasting = {
+  __typename: "BeerTasting";
+  id: string;
+  host: string;
+  Beers: {
+    __typename: "ModelBeerConnection";
+    items: Array<{
+      __typename: "Beer";
+      id: string;
+      name: string;
+      alcohol: number | null;
+      description: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+}
 
 @Component({
   selector: 'app-tasting',
@@ -7,10 +40,10 @@ import { APIService} from './../API.service'
   styleUrls: ['./tasting.component.scss']
 })
 export class TastingComponent implements OnInit, OnChanges {
-  @Input() tasting:any;
+  @Input() tasting:Tasting;
   tastingsBeers
 
-  constructor(public db: APIService) { }
+  constructor(public db: APIService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tastingsBeers = this.tasting.Beers.items
@@ -25,5 +58,16 @@ export class TastingComponent implements OnInit, OnChanges {
     for (let beer of this.tastingsBeers) {
       this.db.DeleteBeer({id: beer.id})
     }
+  }
+
+  openRateDialog(beer) {
+    const dialogRef = this.dialog.open(RateTastingComponent, {
+      width: '90%',
+      height: '90%',
+      data: beer
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

@@ -22,8 +22,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { TastingComponent } from './tasting/tasting.component';
 import { MatCardModule } from '@angular/material/card';
 import { AddTastingComponent } from './add-tasting/add-tasting.component';
+import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RankingComponent,
     TastingsComponent,
     TastingComponent,
-    AddTastingComponent
+    AddTastingComponent,
+    RateTastingComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSortModule
   ],
   exports: [
     BrowserModule,

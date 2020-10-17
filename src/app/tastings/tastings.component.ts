@@ -82,7 +82,7 @@ export class TastingsComponent implements OnInit {
   //   }
   // }
 
-  openDialog(): void {
+  openAddDialog(): void {
     const dialogRef = this.dialog.open(AddTastingComponent, {
       width: '400px',
     });

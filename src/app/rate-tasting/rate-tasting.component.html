@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+    <h1>Rate {{beer.name}}</h1>
+    <form [formGroup]="createRating" (submit)="rateBeer()">
+        <mat-form-field appearance="fill">
+            <mat-label>Smell</mat-label>
+            <input matInput name="smell" name="smell" formControlName="smell" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Color</mat-label>
+            <input matInput name="color" name="color" formControlName="color" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Branding</mat-label>
+            <input matInput name="branding" name="branding" formControlName="branding" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Taste</mat-label>
+            <input matInput name="taste" name="taste" formControlName="taste" type="number">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="rateBeer()">Create</button>
+</div>

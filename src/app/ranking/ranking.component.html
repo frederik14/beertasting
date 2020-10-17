@@ -1,3 +1,19 @@
-<p>
-  ranking works!
-</p>
+<table matSort (matSortChange)="sortData($event)">
+  <tr>
+    <th mat-sort-header="name">Beer</th>
+    <th mat-sort-header="alcohol">Alcohol (Vol %)</th>
+    <th mat-sort-header="smell">Smell</th>
+    <th mat-sort-header="color">Color</th>
+    <th mat-sort-header="branding">Branding</th>
+    <th mat-sort-header="taste">Taste</th>
+  </tr>
+
+  <tr *ngFor="let beer of sortedData">
+    <td>{{beer.name}}</td>
+    <td>{{beer.alcohol}}</td>
+    <td>{{beer.smell}}</td>
+    <td>{{beer.color}}</td>
+    <td>{{beer.branding}}</td>
+    <td>{{beer.taste}}</td>
+  </tr>
+</table>
