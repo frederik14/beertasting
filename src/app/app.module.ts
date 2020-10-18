@@ -36,6 +36,8 @@ import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
     TastingComponent,
     AddTastingComponent,
     RateTastingComponent,
+    MatCardModule,
+    MatSortModule
   ],
   imports: [
     BrowserModule,
