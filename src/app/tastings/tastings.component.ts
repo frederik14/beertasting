@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AddTastingComponent } from '../add-tasting/add-tasting.component';
 // import { APIService} from './../API.service'
 import { TastingsService} from './../tastings.service'
-import { AddTastingComponent } from './../add-tasting/add-tasting.component'
 
 export interface Beer {
   name: string;

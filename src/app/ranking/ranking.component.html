@@ -6,6 +6,7 @@
     <th mat-sort-header="color">Color</th>
     <th mat-sort-header="branding">Branding</th>
     <th mat-sort-header="taste">Taste</th>
+    <th mat-sort-header="total">Total (%)</th>
   </tr>
 
   <tr *ngFor="let beer of sortedData">
@@ -15,5 +16,6 @@
     <td>{{beer.color}}</td>
     <td>{{beer.branding}}</td>
     <td>{{beer.taste}}</td>
+    <td>{{beer.total}}</td>
   </tr>
 </table>
