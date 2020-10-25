@@ -14,6 +14,7 @@ type Ratings = {
 }
 
 type Ranking = {
+  rank?:number
   name:string,
   alcohol:number,
   smell:number,
@@ -32,7 +33,7 @@ type Ranking = {
 export class RankingComponent implements OnInit {
   public ratings: Ratings[]
   public ranking: Ranking[] = [];
-  public sortedData: Ratings[]
+  public sortedData: Ranking[]
 
   constructor(public db: APIService) { }
 
@@ -47,7 +48,13 @@ export class RankingComponent implements OnInit {
     for( const rating of response.items) {
       this.createRanking(rating)
     }
-    this.sortedData = [...this.ranking]
+    this.sortData({
+      active : 'total',
+      direction : 'asc'
+    })
+    for(const rank in this.sortedData) {
+      this.sortedData[rank].rank = Number(rank) + 1 
+    }
   }
 
   sortData(sort: Sort) {
@@ -60,6 +67,7 @@ export class RankingComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
+        case 'rank': return compare(a.rank, b.rank, isAsc);
         case 'name': return compare(a.name, b.name, isAsc);
         case 'alcohol': return compare(a.alcohol, b.alcohol, isAsc);
         case 'smell': return compare(a.smell, b.smell, isAsc);

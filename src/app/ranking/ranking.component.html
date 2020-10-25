@@ -1,5 +1,6 @@
 <table matSort (matSortChange)="sortData($event)">
   <tr>
+    <th mat-sort-header="rank">Rank</th>
     <th mat-sort-header="name">Beer</th>
     <th mat-sort-header="alcohol">Alcohol (Vol %)</th>
     <th mat-sort-header="smell">Smell</th>
@@ -10,6 +11,7 @@
   </tr>
 
   <tr *ngFor="let beer of sortedData">
+    <td>{{beer.rank}}</td>
     <td>{{beer.name}}</td>
     <td>{{beer.alcohol}}</td>
     <td>{{beer.smell}}</td>
