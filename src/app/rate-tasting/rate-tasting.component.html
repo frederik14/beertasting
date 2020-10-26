@@ -3,22 +3,27 @@
     <form [formGroup]="createRating" (submit)="rateBeer()">
         <mat-form-field appearance="fill">
             <mat-label>Smell</mat-label>
-            <input matInput name="smell" name="smell" formControlName="smell" type="number">
+            <input matInput name="smell" formControlName="smell" type="number">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Color</mat-label>
-            <input matInput name="color" name="color" formControlName="color" type="number">
+            <input matInput name="color" formControlName="color" type="number">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Branding</mat-label>
-            <input matInput name="branding" name="branding" formControlName="branding" type="number">
+            <input matInput name="branding" formControlName="branding" type="number">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Taste</mat-label>
-            <input matInput name="taste" name="taste" formControlName="taste" type="number">
+            <input matInput name="taste" formControlName="taste" type="number">
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput name="description" placeholder=""></textarea>
+          </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="rateBeer()">Create</button>
+    <button mat-button (click)="rateBeer()">Rate</button>
+    <span *ngIf="total!==undefined">Overal score of {{total}} % submitted.</span>
 </div>

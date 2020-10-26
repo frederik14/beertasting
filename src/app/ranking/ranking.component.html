@@ -14,10 +14,10 @@
     <td>{{beer.rank}}</td>
     <td>{{beer.name}}</td>
     <td>{{beer.alcohol}}</td>
-    <td>{{beer.smell}}</td>
-    <td>{{beer.color}}</td>
-    <td>{{beer.branding}}</td>
-    <td>{{beer.taste}}</td>
-    <td>{{beer.total}}</td>
+    <td>{{beer.smell | number:'1.0-1'}}</td>
+    <td>{{beer.color | number:'1.0-1'}}</td>
+    <td>{{beer.branding | number:'1.0-1'}}</td>
+    <td>{{beer.taste | number:'1.0-1'}}</td>
+    <td>{{beer.total | number:'1.0-1'}}</td>
   </tr>
 </table>

@@ -31,7 +31,6 @@ type Ranking = {
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
-  public ratings: Ratings[]
   public ranking: Ranking[] = [];
   public sortedData: Ranking[]
 
@@ -44,7 +43,6 @@ export class RankingComponent implements OnInit {
   async getRanking() {
     const response = await this.db.ListBeerRatings()
     console.log(response)
-    this.ratings = []
     for( const rating of response.items) {
       this.createRanking(rating)
     }
@@ -82,7 +80,7 @@ export class RankingComponent implements OnInit {
 
   getRankingIfAlreadyExisting(beerName: string) {
     for( const ranking of this.ranking ) {
-      if ( ranking.name == beerName) {
+      if ( ranking.name === beerName) {
         return ranking
       }
     }
@@ -105,8 +103,8 @@ export class RankingComponent implements OnInit {
       total: total,
       userName: rating.userName
     }
-    const ranking = this.getRankingIfAlreadyExisting(rating.Beer.Name)
-    if ( ranking == undefined ) {
+    const ranking = this.getRankingIfAlreadyExisting(rating.Beer.name)
+    if ( ranking === undefined ) {
       const rankingItem = {
         name: rating.Beer.name,
         alcohol: rating.Beer.alcohol,
@@ -122,6 +120,11 @@ export class RankingComponent implements OnInit {
       this.ranking.push(rankingItem)
     } else {
       ranking.ratings.push(newRating)
+      ranking.smell = 0
+      ranking.color = 0
+      ranking.branding = 0
+      ranking.taste = 0
+      ranking.total = 0
       for(const beerRating of ranking.ratings) {
         ranking.smell += beerRating.smell
         ranking.color += beerRating.color

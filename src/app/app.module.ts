@@ -26,6 +26,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +40,7 @@ import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
     TastingComponent,
     AddTastingComponent,
     RateTastingComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,9 @@ import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
     MatCardModule,
     MatDialogModule,
     FlexLayoutModule,
-    MatSortModule
+    MatSortModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   exports: [
     BrowserModule,
@@ -65,7 +72,9 @@ import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

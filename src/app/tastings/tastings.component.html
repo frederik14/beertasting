@@ -1,7 +1,7 @@
 <div class="main">
   <h1>Tastings</h1>
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div *ngFor="let tasting of tastings" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
+    <div *ngFor="let tasting of tastings">
         <app-tasting [tasting] = "tasting"></app-tasting>
     </div>
   </div>

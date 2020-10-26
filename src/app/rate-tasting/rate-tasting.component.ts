@@ -20,6 +20,7 @@ type User = {
 export class RateTastingComponent implements OnInit {
   public createRating : FormGroup
   public user: User
+  public total: number
 
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
@@ -50,6 +51,11 @@ export class RateTastingComponent implements OnInit {
   }
 
   rateBeer() {
+    this.total = 
+    ( this.createRating.controls.smell.value
+    + this.createRating.controls.color.value
+    + this.createRating.controls.branding.value
+    + this.createRating.controls.taste.value ) * 2
     this.db.CreateBeerRating({
       userName:this.user.username,
       smell: this.createRating.controls.smell.value,
