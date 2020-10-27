@@ -1,5 +1,5 @@
-<table matSort (matSortChange)="sortData($event)">
-  <tr>
+<table matSort (matSortChange)="sortData($event)" class="center">
+  <tr mat-header-row> 
     <th mat-sort-header="rank">#</th>
     <th mat-sort-header="name">Beer</th>
     <th mat-sort-header="alcohol">%Vol</th>
@@ -10,9 +10,9 @@
     <th mat-sort-header="total">Total (%)</th>
   </tr>
 
-  <tr *ngFor="let beer of sortedData">
+  <tr mat-row *ngFor="let beer of sortedData">
     <td>{{beer.rank}}</td>
-    <td>{{beer.name}}</td>
+    <td><button mat-button color="primary"(click) = "openRateDialog(beer)">{{beer.name}}</button></td>
     <td>{{beer.alcohol}}</td>
     <td>{{beer.smell | number:'1.0-1'}}</td>
     <td>{{beer.color | number:'1.0-1'}}</td>

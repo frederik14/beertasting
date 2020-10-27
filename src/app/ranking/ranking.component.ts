@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
 import { APIService } from '../API.service';
+import { BeerRankComponent } from '../beer-rank/beer-rank.component';
 
 type Ratings = {
   name:string,
@@ -34,7 +36,7 @@ export class RankingComponent implements OnInit {
   public ranking: Ranking[] = [];
   public sortedData: Ranking[]
 
-  constructor(public db: APIService) { }
+  constructor(public db: APIService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getRanking()
@@ -139,6 +141,17 @@ export class RankingComponent implements OnInit {
       ranking.taste /= length
       ranking.total /= length
     }
+  }
+
+  openRateDialog(beer) {
+    const dialogRef = this.dialog.open(BeerRankComponent, {
+      // width: '90%',
+      // height: '90%',
+      data: beer
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 }

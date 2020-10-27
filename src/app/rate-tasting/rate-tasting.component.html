@@ -25,5 +25,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="rateBeer()">Rate</button>
+    <button mat-button mat-dialog-close>Cancel</button>
     <span *ngIf="total!==undefined">Overal score of {{total}} % submitted.</span>
 </div>

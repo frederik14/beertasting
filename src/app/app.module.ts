@@ -29,6 +29,7 @@ import { RateTastingComponent } from './rate-tasting/rate-tasting.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { BeerRankComponent } from './beer-rank/beer-rank.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MatMenuModule } from '@angular/material/menu';
     AddTastingComponent,
     RateTastingComponent,
     NavbarComponent,
+    BeerRankComponent,
   ],
   imports: [
     BrowserModule,
