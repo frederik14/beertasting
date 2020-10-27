@@ -31,6 +31,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { BeerRankComponent } from './beer-rank/beer-rank.component';
 
+import { NgxCsvParserModule } from 'ngx-csv-parser';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { BeerRankComponent } from './beer-rank/beer-rank.component';
     FlexLayoutModule,
     MatSortModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    // NgxCsvParserModule
   ],
   exports: [
     BrowserModule,

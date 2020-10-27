@@ -26,6 +26,7 @@
     "aws-amplify": "^3.3.3",
     "aws-amplify-angular": "^5.0.32",
     "core-js": "^2.5.4",
+    "ngx-csv-parser": "0.0.6",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
     "zone.js": "~0.10.2"
