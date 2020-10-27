@@ -48,7 +48,7 @@ export class RankingComponent implements OnInit {
     }
     this.sortData({
       active : 'total',
-      direction : 'asc'
+      direction : 'desc'
     })
     for(const rank in this.sortedData) {
       this.sortedData[rank].rank = Number(rank) + 1 

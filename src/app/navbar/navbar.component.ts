@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
   menuItems: any[] = [
     {
       label: 'Ranking',
-      route: 'ranking',
+      route: '',
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true

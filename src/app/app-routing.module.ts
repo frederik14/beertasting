@@ -7,10 +7,6 @@ import { TastingsComponent } from './tastings/tastings.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
-  },
-  {
-    path: 'ranking',
     component: RankingComponent
   },
   {
