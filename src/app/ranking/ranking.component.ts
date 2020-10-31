@@ -50,7 +50,7 @@ export class RankingComponent implements OnInit {
   }
 
   async getRanking() {
-    const response = await this.db.ListBeerRatings()
+    const response = await this.db.ListBeerRatings(undefined,50000)
     console.log(response)
     for( const rating of response.items) {
       this.createRanking(rating)
