@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+    <h1>Raadsel:</h1>
+    <form [formGroup]="geochache">
+        <p>Welk getal kan je zowel bij 5 optellen als vermenigvuldigen met 5, zodat beide bewerkingen dezelfde uitkomst hebben?</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Answer</mat-label>
+            <input matInput name="smell" formControlName="answer" type="number">
+        </mat-form-field>
+    </form>
+    <button mat-button (click)="submit()">Check</button>
+    <p *ngIf="correct === false">Fout! Zoek verder!</p>
+    <p *ngIf="correct">Correct! Het gerstennat vind je hier terug:</p>
+    <iframe *ngIf="correct" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.896244063934!2d4.743553315477985!3d51.07346535015858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDA0JzI0LjUiTiA0wrA0NCc0NC43IkU!5e0!3m2!1sen!2sbe!4v1605818074118!5m2!1sen!2sbe" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <p> Info voor het finale spel: Letter E=3"</p>
+</div>

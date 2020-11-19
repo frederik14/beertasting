@@ -8,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   menuItems: any[] = [
     {
-      label: 'Ranking',
+      label: 'Geocache',
       route: '',
+      showOnMobile: false,
+      showOnTablet: true,
+      showOnDesktop: true
+    },
+    {
+      label: 'Ranking',
+      route: 'ranking',
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true

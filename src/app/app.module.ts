@@ -32,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { BeerRankComponent } from './beer-rank/beer-rank.component';
 
 import { NgxCsvParserModule } from 'ngx-csv-parser';
+import { GeocacheComponent } from './geocache/geocache.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { NgxCsvParserModule } from 'ngx-csv-parser';
     RateTastingComponent,
     NavbarComponent,
     BeerRankComponent,
+    GeocacheComponent,
   ],
   imports: [
     BrowserModule,
