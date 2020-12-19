@@ -97,6 +97,9 @@ export class RankingComponent implements OnInit {
   }
 
   createRanking(rating) {
+    if (rating.Beer == undefined) {
+      return
+    }  
     const total = 
     (rating.smell
     + rating.color

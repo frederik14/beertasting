@@ -24,7 +24,12 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="rateBeer()">Rate</button>
-    <button mat-button mat-dialog-close>Cancel</button>
+    <div *ngIf="!submitted">
+        <button mat-button (click)="rateBeer()">Rate</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+    <div *ngIf="submitted">
+        <button mat-button mat-dialog-close>Done</button>
+    </div>
     <span *ngIf="total!==undefined">Overal score of {{total}} % submitted.</span>
 </div>

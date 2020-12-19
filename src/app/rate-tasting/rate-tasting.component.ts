@@ -21,6 +21,7 @@ export class RateTastingComponent implements OnInit {
   public createRating : FormGroup
   public user: User
   public total: number
+  public submitted: boolean = false
 
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
@@ -65,5 +66,6 @@ export class RateTastingComponent implements OnInit {
       description: this.createRating.controls.taste.value,
       beerRatingBeerId: this.beer.id
     })
+    this.submitted = true
   }
 }
