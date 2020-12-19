@@ -6,12 +6,12 @@ import { RankingComponent } from './ranking/ranking.component';
 import { TastingsComponent } from './tastings/tastings.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: GeocacheComponent
+  // },
   {
     path: '',
-    component: GeocacheComponent
-  },
-  {
-    path: 'ranking',
     component: RankingComponent
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],  // .../#/crisis-center/,
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

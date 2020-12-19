@@ -7,16 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   menuItems: any[] = [
-    {
-      label: 'Geocache',
-      route: '',
-      showOnMobile: false,
-      showOnTablet: true,
-      showOnDesktop: true
-    },
+    // {
+    //   label: 'Geocache',
+    //   route: '',
+    //   showOnMobile: false,
+    //   showOnTablet: true,
+    //   showOnDesktop: true
+    // },
     {
       label: 'Ranking',
-      route: 'ranking',
+      route: '',
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true

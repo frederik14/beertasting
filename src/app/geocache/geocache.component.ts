@@ -9,21 +9,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class GeocacheComponent implements OnInit {
   geochache: FormGroup
   correct : Boolean
+  answer: Number
 
   constructor(public formBuilder : FormBuilder,) {
-    this.geochache = this.formBuilder.group({
-      answer: ['', [Validators.required]],
-    })
   }
 
   ngOnInit(): void {
   }
 
   submit() {
-    if (this.geochache.controls.answer.value == 1.25) {
+    console.log("answer: ", this.answer)
+    if (this.answer === 1.25) {
       this.correct = true
+      console.log('correct', this.correct)
+    } else {
+      this.correct = false
     }
-    this.correct = false
   }
 
 }
