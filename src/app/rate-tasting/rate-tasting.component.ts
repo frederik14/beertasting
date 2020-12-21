@@ -30,10 +30,10 @@ export class RateTastingComponent implements OnInit {
     public db: APIService
   ){
     this.createRating = this.formBuilder.group({
-      smell: [10, [Validators.required]],
-      color: [10, [Validators.required]],
-      branding: [10, [Validators.required]],
-      taste: [20, [Validators.required]],
+      smell: [10, [Validators.required, Validators.min(0), Validators.max(10)]],
+      color: [10, [Validators.required, Validators.min(0), Validators.max(10)]],
+      branding: [10, [Validators.required, Validators.min(0), Validators.max(10)]],
+      taste: [20, [Validators.required, Validators.min(0), Validators.max(20)]],
       description: ['', [Validators.required]],
     })
   }

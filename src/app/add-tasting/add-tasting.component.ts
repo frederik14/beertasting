@@ -44,7 +44,7 @@ export class AddTastingComponent {
   getBeer() {
     return this.formBuilder.group({
       name: ['', Validators.required],
-      alcohol: 5,
+      alcohol: [5, Validators.required],
     });
   }
 

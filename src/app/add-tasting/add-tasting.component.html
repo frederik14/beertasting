@@ -13,7 +13,7 @@
               </mat-form-field>
               <mat-form-field>
                   <mat-label>Alcohol(% vol)</mat-label> 
-                  <input matInput placeholder="alcohol" name="alcohol"  formControlName="alcohol">            
+                  <input matInput type="number" placeholder="alcohol" name="alcohol"  formControlName="alcohol">            
               </mat-form-field>
               <button type="button" *ngIf="createTasting.get('beers')['controls'].length > 1" (click)="removeBeer(i)">
                   <mat-icon>delete forever</mat-icon>
