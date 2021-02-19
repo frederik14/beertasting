@@ -1,24 +1,25 @@
-<table matSort (matSortChange)="sortData($event)" class="center">
+<table mat-table matSort (matSortChange)="sortData($event)" class="center">
   <tr mat-header-row> 
-    <th mat-sort-header="rank">#</th>
-    <th mat-sort-header="name">Beer</th>
-    <th mat-sort-header="alcohol">%Vol</th>
-    <th mat-sort-header="smell">Smell</th>
-    <th mat-sort-header="color">Color</th>
-    <th mat-sort-header="branding">Looks</th>
-    <th mat-sort-header="taste">Taste</th>
-    <th mat-sort-header="total">Total (%)</th>
+    <th mat-header-cell mat-sort-header="rank">#</th>
+    <th mat-header-cell mat-sort-header="name">Beer</th>
+    <th mat-header-cell mat-sort-header="alcohol">%Vol</th>
+    <th mat-header-cell mat-sort-header="smell">Smell</th>
+    <th mat-header-cell mat-sort-header="color">Color</th>
+    <th mat-header-cell mat-sort-header="branding">Looks</th>
+    <th mat-header-cell mat-sort-header="taste">Taste</th>
+    <th mat-header-cell mat-sort-header="total">Total (%)</th>
   </tr>
 
   <tr mat-row *ngFor="let beer of sortedData">
-    <td>{{beer.rank}}</td>
-    <td><button mat-button color="primary"(click) = "openRateDialog(beer)">{{beer.name}}</button></td>
-    <td>{{beer.alcohol}}</td>
-    <td>{{beer.smell | number:'1.0-1'}}</td>
-    <td>{{beer.color | number:'1.0-1'}}</td>
-    <td>{{beer.branding | number:'1.0-1'}}</td>
-    <td>{{beer.taste | number:'1.0-1'}}</td>
-    <td>{{beer.total | number:'1.0-1'}}</td>
+    <td mat-cell>{{beer.rank}}</td>
+    <td mat-cell><button mat-button color="primary"(click) = "openRateDialog(beer)">{{beer.name}}</button></td>
+    <td mat-cell>{{beer.alcohol}}</td>
+    <td mat-cell>{{beer.smell | number:'1.0-1'}}</td>
+    <td mat-cell>{{beer.color | number:'1.0-1'}}</td>
+    <td mat-cell>{{beer.branding | number:'1.0-1'}}</td>
+    <td mat-cell>{{beer.taste | number:'1.0-1'}}</td>
+    <td mat-cell>{{beer.total | number:'1.0-1'}}</td>
   </tr>
 </table>
-<input *ngIf="false" type="file" (change)="fileChangeListener($event)"/>
+<div class="loading" *ngIf="loading">loading...</div>
+<!-- <input *ngIf="false" type="file" (change)="fileChangeListener($event)"/> -->

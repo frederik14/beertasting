@@ -54,9 +54,11 @@ export class TastingComponent implements OnInit, OnChanges {
   }
   
   delete() {
-    this.db.DeleteBeerTasting({id:this.tasting.id})
-    for (let beer of this.tastingsBeers) {
-      this.db.DeleteBeer({id: beer.id})
+    if(confirm("Are you sure to delete al beers and ratings? ")) {
+      this.db.DeleteBeerTasting({id:this.tasting.id})
+      for (let beer of this.tastingsBeers) {
+        this.db.DeleteBeer({id: beer.id})
+      }
     }
   }
 

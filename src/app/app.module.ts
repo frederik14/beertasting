@@ -30,6 +30,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { BeerRankComponent } from './beer-rank/beer-rank.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { GeocacheComponent } from './geocache/geocache.component';
@@ -65,6 +66,7 @@ import { GeocacheComponent } from './geocache/geocache.component';
     MatSortModule,
     MatToolbarModule,
     MatMenuModule,
+    MatProgressSpinnerModule
     // NgxCsvParserModule
   ],
   exports: [
@@ -81,7 +83,8 @@ import { GeocacheComponent } from './geocache/geocache.component';
     MatCardModule,
     MatDialogModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

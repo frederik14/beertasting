@@ -1,23 +1,24 @@
 <div mat-dialog-content>
     <h1>{{beer.name}} ({{beer.alcohol}} %Vol)</h1>
-    <table matSort (matSortChange)="sortData($event)">
-        <tr>
-            <th mat-sort-header="user">User</th>
-            <th mat-sort-header="smell">Smell</th>
-            <th mat-sort-header="color">Color</th>
-            <th mat-sort-header="branding">Looks</th>
-            <th mat-sort-header="taste">Taste</th>
-            <th mat-sort-header="total">Total (%)</th>
+    <table mat-table matSort (matSortChange)="sortData($event)">
+        <tr mat-header-row>
+            <th mat-header-cell mat-sort-header="user">User</th>
+            <th mat-header-cell mat-sort-header="smell">Smell</th>
+            <th mat-header-cell mat-sort-header="color">Color</th>
+            <th mat-header-cell mat-sort-header="branding">Looks</th>
+            <th mat-header-cell mat-sort-header="taste">Taste</th>
+            <th mat-header-cell mat-sort-header="total">Total (%)</th>
         </tr>
 
-        <tr *ngFor="let beer of sortedData">
-            <td>{{beer.userName}}</td>
-            <td>{{beer.smell | number:'1.0-1'}}</td>
-            <td>{{beer.color | number:'1.0-1'}}</td>
-            <td>{{beer.branding | number:'1.0-1'}}</td>
-            <td>{{beer.taste | number:'1.0-1'}}</td>
-            <td>{{beer.total | number:'1.0-1'}}</td>
+        <tr mat-row *ngFor="let beer of sortedData">
+            <td mat-cell>{{beer.userName}}</td>
+            <td mat-cell>{{beer.smell | number:'1.0-1'}}</td>
+            <td mat-cell>{{beer.color | number:'1.0-1'}}</td>
+            <td mat-cell>{{beer.branding | number:'1.0-1'}}</td>
+            <td mat-cell>{{beer.taste | number:'1.0-1'}}</td>
+            <td mat-cell>{{beer.total | number:'1.0-1'}}</td>
         </tr>
+
     </table>
 </div>
 <div mat-dialog-actions>

@@ -36,6 +36,7 @@ type Ranking = {
 export class RankingComponent implements OnInit {
   public ranking: Ranking[] = [];
   public sortedData: Ranking[]
+  loading:boolean = false
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -50,7 +51,9 @@ export class RankingComponent implements OnInit {
   }
 
   async getRanking() {
+    this.loading = true
     const response = await this.db.ListBeerRatings(undefined,50000)
+    this.loading = false
     console.log(response)
     for( const rating of response.items) {
       this.createRanking(rating)
