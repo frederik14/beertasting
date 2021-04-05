@@ -31,9 +31,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { BeerRankComponent } from './beer-rank/beer-rank.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { GeocacheComponent } from './geocache/geocache.component';
+import { from } from 'rxjs';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -66,7 +69,9 @@ import { GeocacheComponent } from './geocache/geocache.component';
     MatSortModule,
     MatToolbarModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     // NgxCsvParserModule
   ],
   exports: [
@@ -84,7 +89,9 @@ import { GeocacheComponent } from './geocache/geocache.component';
     MatDialogModule,
     MatToolbarModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

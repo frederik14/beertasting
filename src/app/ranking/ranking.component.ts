@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
 import { NgxCsvParser } from 'ngx-csv-parser';
 import { APIService } from '../API.service';
 import { BeerRankComponent } from '../beer-rank/beer-rank.component';
+import { debounceTime } from 'rxjs/operators';
 
 type Ratings = {
   name:string,
@@ -13,7 +15,7 @@ type Ratings = {
   branding:number,
   taste:number,
   total:number,
-  userName?:string
+  userName?:string,
 }
 
 type Ranking = {
@@ -25,6 +27,7 @@ type Ranking = {
   branding:number,
   taste:number,
   total:number,
+  createdAt:number,
   ratings : Ratings[]
 }
 
@@ -37,6 +40,10 @@ export class RankingComponent implements OnInit {
   public ranking: Ranking[] = [];
   public sortedData: Ranking[]
   loading:boolean = false
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -48,9 +55,15 @@ export class RankingComponent implements OnInit {
 
   ngOnInit() {
     this.getRanking()
+    this.range.valueChanges.pipe(
+        debounceTime(200)
+      ).subscribe(event => {
+        this.onDateChanged(event);
+    });
   }
 
   async getRanking() {
+    this.ranking = []
     this.loading = true
     const response = await this.db.ListBeerRatings(undefined,50000)
     this.loading = false
@@ -65,15 +78,15 @@ export class RankingComponent implements OnInit {
     for(const rank in this.sortedData) {
       this.sortedData[rank].rank = Number(rank) + 1 
     }
+    this.filterByRange()
   }
 
   sortData(sort: Sort) {
-    const data = this.ranking.slice();
+    var data = this.ranking.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
     }
-
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
@@ -88,6 +101,14 @@ export class RankingComponent implements OnInit {
         default: return 0;
       }
     });
+  }
+
+  filterByRange() {
+    if (this.range.value['start'] && this.range.value['end'] ) {
+      this.sortedData = this.sortedData.filter((a) =>{
+        return a.createdAt>=this.range.value['start'] && a.createdAt<=this.range.value['end']
+      })
+    }
   }
 
   getRankingIfAlreadyExisting(beerName: string) {
@@ -116,7 +137,7 @@ export class RankingComponent implements OnInit {
       branding: rating.branding,
       taste: rating.taste,
       total: total,
-      userName: rating.userName
+      userName: rating.userName,
     }
     const ranking = this.getRankingIfAlreadyExisting(rating.Beer.name)
     if ( ranking === undefined ) {
@@ -128,6 +149,7 @@ export class RankingComponent implements OnInit {
         branding: rating.branding,
         taste: rating.taste,
         total: total,
+        createdAt: Date.parse(rating.createdAt),
         ratings: [
           newRating
         ]
@@ -205,6 +227,10 @@ export class RankingComponent implements OnInit {
         })
       }
     });
+  }
+
+  onDateChanged(event) {
+    this.filterByRange()
   }
 
 }
