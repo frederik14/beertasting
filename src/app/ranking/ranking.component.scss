@@ -20,3 +20,16 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.mat-button {
+    white-space: normal;
+    word-wrap:break-word;
+    text-align: left;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+table, th, td {
+    border: none;
+    border-collapse: collapse;
+}
