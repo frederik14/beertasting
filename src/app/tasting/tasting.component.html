@@ -9,7 +9,7 @@
       <li *ngFor="let beer of tastingsBeers;"><span Class="name">{{beer.name}} ( {{beer.alcohol}} % vol )</span><button mat-button (click) = "openRateDialog(beer)">rate</button></li>
     </ol>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions align="end">
     <button mat-button (click) = "delete()">Delete</button>
   </mat-card-actions>
 </mat-card>

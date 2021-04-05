@@ -57,7 +57,6 @@ export class TastingsComponent implements OnInit {
 
   async getTastings() {
     const response = await this.db.ListBeerTastings()
-    console.log(response)
     this.tastings = response.items
   }
   

@@ -44,6 +44,7 @@ export class RankingComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
+  lastWeekCheckbox:boolean = false;
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -58,19 +59,11 @@ export class RankingComponent implements OnInit {
     this.range.valueChanges.pipe(
         debounceTime(200)
       ).subscribe(event => {
-        this.onDateChanged(event);
+        this.onDateChanged();
     });
   }
 
-  async getRanking() {
-    this.ranking = []
-    this.loading = true
-    const response = await this.db.ListBeerRatings(undefined,50000)
-    this.loading = false
-    console.log(response)
-    for( const rating of response.items) {
-      this.createRanking(rating)
-    }
+  sortDataAndCreateRank() {
     this.sortData({
       active : 'total',
       direction : 'desc'
@@ -78,6 +71,18 @@ export class RankingComponent implements OnInit {
     for(const rank in this.sortedData) {
       this.sortedData[rank].rank = Number(rank) + 1 
     }
+  }
+
+  async getRanking() {
+    this.ranking = []
+    this.loading = true
+    const response = await this.db.ListBeerRatings(undefined,50000)
+    this.loading = false
+    // console.log(response)
+    for( const rating of response.items) {
+      this.createRanking(rating)
+    }
+    this.sortDataAndCreateRank()
     this.filterByRange()
   }
 
@@ -108,6 +113,8 @@ export class RankingComponent implements OnInit {
       this.sortedData = this.sortedData.filter((a) =>{
         return a.createdAt>=this.range.value['start'] && a.createdAt<=this.range.value['end']
       })
+    } else {
+      this.sortDataAndCreateRank()
     }
   }
 
@@ -229,8 +236,18 @@ export class RankingComponent implements OnInit {
     });
   }
 
-  onDateChanged(event) {
+  onDateChanged() {
     this.filterByRange()
+  }
+
+  setRangeLastWeek() {
+    if (this.lastWeekCheckbox == false) {
+      this.range.controls['start'].setValue(new Date(Date.now() - 7*24*60*60*1000 ))
+      this.range.controls['end'].setValue(new Date(Date.now() + 24*60*60*1000))
+    } else {
+      this.range.controls['start'].setValue(undefined)
+      this.range.controls['end'].setValue(undefined)
+    }
   }
 
 }

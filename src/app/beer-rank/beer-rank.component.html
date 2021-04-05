@@ -1,4 +1,4 @@
-<div mat-dialog-content>
+<mat-dialog-content>
     <h1>{{beer.name}} ({{beer.alcohol}} %Vol)</h1>
     <table mat-table matSort (matSortChange)="sortData($event)">
         <tr mat-header-row>
@@ -20,7 +20,7 @@
         </tr>
 
     </table>
-</div>
-<div mat-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-</div>
+</mat-dialog-actions>

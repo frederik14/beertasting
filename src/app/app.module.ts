@@ -37,7 +37,7 @@ import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { GeocacheComponent } from './geocache/geocache.component';
 import { from } from 'rxjs';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule
     // NgxCsvParserModule
   ],
   exports: [
@@ -92,6 +93,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
