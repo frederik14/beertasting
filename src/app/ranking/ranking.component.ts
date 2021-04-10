@@ -45,6 +45,7 @@ export class RankingComponent implements OnInit {
     end: new FormControl()
   });
   lastWeekCheckbox:boolean = false;
+  public error:string = ""
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -74,16 +75,24 @@ export class RankingComponent implements OnInit {
   }
 
   async getRanking() {
-    this.ranking = []
-    this.loading = true
-    const response = await this.db.ListBeerRatings(undefined,50000)
-    this.loading = false
-    // console.log(response)
-    for( const rating of response.items) {
-      this.createRanking(rating)
+    try {
+      this. error = ''
+      this.ranking = []
+      this.loading = true
+      const response = await this.db.ListBeerRatings(undefined,50000)
+      this.loading = false
+      // console.log(response)
+      for( const rating of response.items) {
+        this.createRanking(rating)
+      }
+      this.sortDataAndCreateRank()
+      this.filterByRange()
+    } catch (err) {
+      this.loading = false
+      console.error(err)
+      this.error = 'Failed to load the ranking please press refresh.'
     }
-    this.sortDataAndCreateRank()
-    this.filterByRange()
+
   }
 
   sortData(sort: Sort) {
