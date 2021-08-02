@@ -1,5 +1,19 @@
 <mat-dialog-content>
-    <h1>{{beer.name}} ({{beer.alcohol}} %Vol)</h1>
+    <h1 *ngIf="!editMode">
+        {{beer.name}} ({{beer.alcohol}} %Vol)
+        <button type="button" (click)="editBeer()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </h1>
+    <h1 *ngIf="editMode">
+        <mat-form-field> 
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" [(ngModel)]="beerName">           
+        </mat-form-field>
+        <button type="button" (click)="updateBeer()">
+            <mat-icon>done</mat-icon>
+        </button>
+    </h1>
     <table mat-table matSort (matSortChange)="sortData($event)">
         <tr mat-header-row>
             <th mat-header-cell mat-sort-header="user">User</th>
