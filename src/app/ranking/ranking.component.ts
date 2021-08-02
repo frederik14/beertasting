@@ -147,6 +147,7 @@ export class RankingComponent implements OnInit {
     + rating.taste ) * 2
     const newRating = {
       name: rating.Beer.name,
+      beerId: rating.Beer.id,
       alcohol: rating.Beer.alcohol,
       smell: rating.smell,
       color: rating.color,
@@ -159,6 +160,7 @@ export class RankingComponent implements OnInit {
     if ( ranking === undefined ) {
       const rankingItem = {
         name: rating.Beer.name,
+        beerId: rating.Beer.id,
         alcohol: rating.Beer.alcohol,
         smell: rating.smell,
         color: rating.color,

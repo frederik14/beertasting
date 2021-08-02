@@ -35,14 +35,8 @@ export class BeerRankComponent implements OnInit {
 
   async updateBeer() {
     this.editMode = false
-    const beers = await this.db.ListBeers(
-      {
-        name: {
-          eq: this.beer.name
-        }
-      })
     await this.db.UpdateBeer({
-      id: beers.items[0].id,
+      id: this.beer.beerId,
       name: this.beerName
     })
     this.beer.name = this.beerName
