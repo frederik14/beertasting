@@ -13,6 +13,7 @@ export class BeerRankComponent implements OnInit {
   public sortedData: any[]
   public editMode: boolean = false
   public beerName: string
+  public beerDescription: string
 
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
@@ -20,6 +21,7 @@ export class BeerRankComponent implements OnInit {
     public db: APIService
   ) {
     this.beerName = this.beer.name
+    this.beerDescription = this.beer.description
   }
 
   ngOnInit(): void {
@@ -37,9 +39,11 @@ export class BeerRankComponent implements OnInit {
     this.editMode = false
     await this.db.UpdateBeer({
       id: this.beer.beerId,
-      name: this.beerName
+      name: this.beerName,
+      description: this.beerDescription
     })
     this.beer.name = this.beerName
+    this.beer.description = this.beerDescription
   }
 
   sortData(sort: Sort) {

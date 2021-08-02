@@ -21,6 +21,7 @@ type Ratings = {
 type Ranking = {
   rank?:number
   name:string,
+  description?:string,
   alcohol:number,
   smell:number,
   color:number,
@@ -46,6 +47,7 @@ export class RankingComponent implements OnInit {
   });
   lastWeekCheckbox:boolean = false;
   public error:string = ""
+  public descriptionFilter: string = ''
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -106,6 +108,7 @@ export class RankingComponent implements OnInit {
       switch (sort.active) {
         case 'rank': return compare(a.rank, b.rank, isAsc);
         case 'name': return compare(a.name, b.name, isAsc);
+        case 'description': return compare(a.name, b.name, isAsc);
         case 'alcohol': return compare(a.alcohol, b.alcohol, isAsc);
         case 'smell': return compare(a.smell, b.smell, isAsc);
         case 'color': return compare(a.color, b.color, isAsc);
@@ -121,6 +124,19 @@ export class RankingComponent implements OnInit {
     if (this.range.value['start'] && this.range.value['end'] ) {
       this.sortedData = this.sortedData.filter((a) =>{
         return a.createdAt>=this.range.value['start'] && a.createdAt<=this.range.value['end']
+      })
+    } else {
+      this.sortDataAndCreateRank()
+    }
+  }
+
+  filterByDescription() {
+    if (this.descriptionFilter != '') {
+      this.sortedData = this.sortedData.filter((a) =>{
+        if(a.description == undefined) {
+          return false
+        }
+        return a.description.includes(this.descriptionFilter)
       })
     } else {
       this.sortDataAndCreateRank()
@@ -148,6 +164,7 @@ export class RankingComponent implements OnInit {
     const newRating = {
       name: rating.Beer.name,
       beerId: rating.Beer.id,
+      description: rating.Beer.description,
       alcohol: rating.Beer.alcohol,
       smell: rating.smell,
       color: rating.color,
@@ -161,6 +178,7 @@ export class RankingComponent implements OnInit {
       const rankingItem = {
         name: rating.Beer.name,
         beerId: rating.Beer.id,
+        description: rating.Beer.description,
         alcohol: rating.Beer.alcohol,
         smell: rating.smell,
         color: rating.color,

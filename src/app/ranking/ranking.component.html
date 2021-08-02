@@ -11,6 +11,10 @@
     <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
   </mat-form-field>
   <mat-checkbox [(ngModel)]="lastWeekCheckbox" (click)="setRangeLastWeek()">Last Week</mat-checkbox>
+  <mat-form-field> 
+    <mat-label>Type Filter</mat-label>
+    <input matInput placeholder="Description" [(ngModel)]="descriptionFilter" (change)="filterByDescription()">           
+  </mat-form-field>
   <button matTooltip="Refresh" mat-icon-button (click)="getRanking()">
     <mat-icon>refresh</mat-icon>
   </button>
@@ -21,6 +25,7 @@
     <tr>
       <th mat-sort-header="rank">#</th>
       <th mat-sort-header="name">Beer</th>
+      <th mat-sort-header="description">Type</th>
       <th mat-sort-header="alcohol">%Vol</th>
       <th mat-sort-header="smell">Smell</th>
       <th mat-sort-header="color">Color</th>
@@ -31,6 +36,7 @@
     <tr *ngFor="let beer of sortedData">
       <td>{{beer.rank}}</td>
       <td><button mat-button color="primary" (click)="openRateDialog(beer)">{{beer.name}}</button></td>
+      <td>{{beer.description}}</td>
       <td>{{beer.alcohol}}</td>
       <td>{{beer.smell | number:'1.0-1'}}</td>
       <td>{{beer.color | number:'1.0-1'}}</td>
