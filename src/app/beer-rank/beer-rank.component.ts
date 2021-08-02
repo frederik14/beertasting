@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddTastingComponent } from '../add-tasting/add-tasting.component';
 import { Sort } from '@angular/material/sort';
+import { APIService } from '../API.service';
 
 @Component({
   selector: 'app-beer-rank',
@@ -10,17 +11,41 @@ import { Sort } from '@angular/material/sort';
 })
 export class BeerRankComponent implements OnInit {
   public sortedData: any[]
+  public editMode: boolean = false
+  public beerName: string
 
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
-    @Inject(MAT_DIALOG_DATA) public beer: any
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public beer: any,
+    public db: APIService
+  ) {
+    this.beerName = this.beer.name
+  }
 
   ngOnInit(): void {
     this.sortData({
-      active : 'total',
-      direction : 'desc'
+      active: 'total',
+      direction: 'desc'
     })
+  }
+
+  editBeer(): void {
+    this.editMode = true
+  }
+
+  async updateBeer() {
+    this.editMode = false
+    const beers = await this.db.ListBeers(
+      {
+        name: {
+          eq: this.beer.name
+        }
+      })
+    await this.db.UpdateBeer({
+      id: beers.items[0].id,
+      name: this.beerName
+    })
+    this.beer.name = this.beerName
   }
 
   sortData(sort: Sort) {
