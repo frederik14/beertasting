@@ -57,7 +57,7 @@ export class TastingsComponent implements OnInit {
 
   async getTastings() {
     const response = await this.db.ListBeerTastings()
-    this.tastings = response.items
+    this.tastings = response.items.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
   }
   
   addTasting(tasting):boolean {

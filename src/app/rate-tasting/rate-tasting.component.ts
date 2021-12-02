@@ -68,12 +68,9 @@ export class RateTastingComponent implements OnInit {
         userName: {
           eq: this.user.username
         },
-        description:{
-          ne: 'Imported from excel'
-        }
-      }, 1000)
+      }, 100000)
     for(const rating of ratings.items) {
-      if(rating.Beer.id == this.beer.id) {
+      if(rating.Beer && rating.Beer.id == this.beer.id) {
         return rating
       }
     }
