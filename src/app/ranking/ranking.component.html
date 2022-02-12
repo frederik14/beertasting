@@ -12,8 +12,21 @@
   </mat-form-field>
   <mat-checkbox [(ngModel)]="lastWeekCheckbox" (click)="setRangeLastWeek()">Last Week</mat-checkbox>
   <mat-form-field> 
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Description" [(ngModel)]="searchFilter" (change)="filterBySearchName()">           
+  </mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-label>Type Filter</mat-label>
-    <input matInput placeholder="Description" [(ngModel)]="descriptionFilter" (change)="filterByDescription()">           
+    <select matNativeControl (change)="filterByDescription()" [(ngModel)]="descriptionFilter">
+      <option value="Tripel">Tripel</option>
+      <option value="(Sterk) Blond">(Sterk) Blond</option>
+      <option value="(Sterke) Saison">(Sterke) Saison</option>
+      <option value="Quadrupel">Quadrupel</option>
+      <option value="Belgische Ale">Belgische Ale</option>
+      <option value="Trappist">Trappist</option>
+      <option value="India Pale Ale">India Pale Ale</option>
+      <option value="India Pale Ale">Weizen</option>
+    </select>
   </mat-form-field>
   <button matTooltip="Refresh" mat-icon-button (click)="getRanking()">
     <mat-icon>refresh</mat-icon>

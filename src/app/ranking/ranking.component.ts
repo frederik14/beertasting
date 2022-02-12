@@ -48,6 +48,7 @@ export class RankingComponent implements OnInit {
   lastWeekCheckbox:boolean = false;
   public error:string = ""
   public descriptionFilter: string = ''
+  public searchFilter: string = ''
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -137,6 +138,19 @@ export class RankingComponent implements OnInit {
           return false
         }
         return a.description.includes(this.descriptionFilter)
+      })
+    } else {
+      this.sortDataAndCreateRank()
+    }
+  }
+
+  filterBySearchName() {
+    if (this.searchFilter != '') {
+      this.sortedData = this.sortedData.filter((a) =>{
+        if(a.name == undefined) {
+          return false
+        }
+        return a.name.includes(this.searchFilter)
       })
     } else {
       this.sortDataAndCreateRank()
