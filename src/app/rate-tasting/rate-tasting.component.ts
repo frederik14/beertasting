@@ -19,7 +19,7 @@ type User = {
 })
 export class RateTastingComponent implements OnInit {
   public createRating: FormGroup
-  public user: User
+  public user: any
   public total: number
   public submitted: boolean = false
   public rating: any
@@ -27,7 +27,7 @@ export class RateTastingComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
-    @Inject(MAT_DIALOG_DATA) public beer: Beer,
+    @Inject(MAT_DIALOG_DATA) public beer: any,
     public formBuilder: FormBuilder,
     public db: APIService
   ) {
@@ -41,8 +41,11 @@ export class RateTastingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.beer)
-    this.getUserInfo()
+    if (this.beer?.userName == undefined) {
+      this.getUserInfo()
+    } else {
+      this.setUserInfo()
+    }
   }
 
   async getUserInfo() {
@@ -60,6 +63,14 @@ export class RateTastingComponent implements OnInit {
       this.createRating.controls.branding.setValue(this.rating.branding)
       this.createRating.controls.taste.setValue(this.rating.taste)
     }
+  }
+
+  setUserInfo() {
+      this.rated = true
+      this.createRating.controls.smell.setValue(this.beer.smell)
+      this.createRating.controls.color.setValue(this.beer.color)
+      this.createRating.controls.branding.setValue(this.beer.branding)
+      this.createRating.controls.taste.setValue(this.beer.taste)
   }
 
   async getRating() {
@@ -101,15 +112,18 @@ export class RateTastingComponent implements OnInit {
         + this.createRating.controls.color.value
         + this.createRating.controls.branding.value
         + this.createRating.controls.taste.value) * 2
+    const user = this.user ? this.user.username  : this.beer?.userName
+    const beer_id = this.beer?.id ? this.beer.id  : this.beer?.beerId
+    const rating_id = this.rating?.id ? this.rating.id  : this.beer?.ratingId
     this.db.UpdateBeerRating({
-      id: this.beer.id,
-      userName: this.user.username,
+      id: rating_id,
+      userName: user,
       smell: this.createRating.controls.smell.value,
       color: this.createRating.controls.color.value,
       branding: this.createRating.controls.branding.value,
       taste: this.createRating.controls.taste.value,
       description: this.createRating.controls.taste.value,
-      beerRatingBeerId: this.beer.id
+      beerRatingBeerId: beer_id
     })
     this.submitted = true
   }

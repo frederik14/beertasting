@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AddTastingComponent } from '../add-tasting/add-tasting.component';
 import { Sort } from '@angular/material/sort';
 import { APIService } from '../API.service';
+import { RateTastingComponent } from '../rate-tasting/rate-tasting.component';
 
 @Component({
   selector: 'app-beer-rank',
@@ -18,7 +19,8 @@ export class BeerRankComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
     @Inject(MAT_DIALOG_DATA) public beer: any,
-    public db: APIService
+    public db: APIService,
+    public dialog: MatDialog,
   ) {
     this.beerName = this.beer.name
     this.beerDescription = this.beer.description
@@ -68,6 +70,18 @@ export class BeerRankComponent implements OnInit {
       }
     });
   }
+
+  openRateDialog(beer) {
+    const dialogRef = this.dialog.open(RateTastingComponent, {
+      // width: '90%',
+      // height: '90%',
+      data: beer
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

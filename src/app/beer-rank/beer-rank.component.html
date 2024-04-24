@@ -1,49 +1,53 @@
 <mat-dialog-content>
-    <div *ngIf="!editMode">
-        <h1>
-            {{beer.name}} ({{beer.alcohol}} %Vol)
-            <button type="button" (click)="editBeer()">
-                <mat-icon>edit</mat-icon>
-            </button>
-        </h1>
-        <p>{{beer.description}}</p>
-    </div>
-    <div *ngIf="editMode">
-        <h1>
-            <mat-form-field> 
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" [(ngModel)]="beerName">           
-            </mat-form-field>
-            <button type="button" (click)="updateBeer()">
-                <mat-icon>done</mat-icon>
-            </button>
-        </h1>
-        <mat-form-field> 
-            <mat-label>Type</mat-label>
-            <input matInput placeholder="Description" [(ngModel)]="beerDescription">           
-        </mat-form-field>
-    </div>
-    <table mat-table matSort (matSortChange)="sortData($event)">
-        <tr mat-header-row>
-            <th mat-header-cell mat-sort-header="user">User</th>
-            <th mat-header-cell mat-sort-header="smell">Smell</th>
-            <th mat-header-cell mat-sort-header="color">Color</th>
-            <th mat-header-cell mat-sort-header="branding">Looks</th>
-            <th mat-header-cell mat-sort-header="taste">Taste</th>
-            <th mat-header-cell mat-sort-header="total">Total (%)</th>
-        </tr>
+  <div *ngIf="!editMode">
+    <h1>
+      {{ beer.name }} ({{ beer.alcohol }} %Vol)
+      <button type="button" (click)="editBeer()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </h1>
+    <p>{{ beer.description }}</p>
+  </div>
+  <div *ngIf="editMode">
+    <h1>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" [(ngModel)]="beerName" />
+      </mat-form-field>
+      <button type="button" (click)="updateBeer()">
+        <mat-icon>done</mat-icon>
+      </button>
+    </h1>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput placeholder="Description" [(ngModel)]="beerDescription" />
+    </mat-form-field>
+  </div>
+  <table mat-table matSort (matSortChange)="sortData($event)">
+    <tr mat-header-row>
+      <th mat-header-cell mat-sort-header="user">User</th>
+      <th mat-header-cell mat-sort-header="smell">Smell</th>
+      <th mat-header-cell mat-sort-header="color">Color</th>
+      <th mat-header-cell mat-sort-header="branding">Looks</th>
+      <th mat-header-cell mat-sort-header="taste">Taste</th>
+      <th mat-header-cell mat-sort-header="total">Total (%)</th>
+    </tr>
 
-        <tr mat-row *ngFor="let beer of sortedData">
-            <td mat-cell>{{beer.userName}}</td>
-            <td mat-cell>{{beer.smell | number:'1.0-1'}}</td>
-            <td mat-cell>{{beer.color | number:'1.0-1'}}</td>
-            <td mat-cell>{{beer.branding | number:'1.0-1'}}</td>
-            <td mat-cell>{{beer.taste | number:'1.0-1'}}</td>
-            <td mat-cell>{{beer.total | number:'1.0-1'}}</td>
-        </tr>
-
-    </table>
+    <tr mat-row *ngFor="let beer of sortedData">
+      <td mat-cell>{{ beer.userName }}</td>
+      <td mat-cell>{{ beer.smell | number : "1.0-1" }}</td>
+      <td mat-cell>{{ beer.color | number : "1.0-1" }}</td>
+      <td mat-cell>{{ beer.branding | number : "1.0-1" }}</td>
+      <td mat-cell>{{ beer.taste | number : "1.0-1" }}</td>
+      <td mat-cell>
+        {{ beer.total | number : "1.0-1" }}
+      </td>
+      <td>
+        <button type="button" (click)="openRateDialog(beer)">Edit</button>
+      </td>
+    </tr>
+  </table>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>

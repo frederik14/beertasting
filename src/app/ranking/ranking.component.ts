@@ -6,6 +6,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 import { APIService } from '../API.service';
 import { BeerRankComponent } from '../beer-rank/beer-rank.component';
 import { debounceTime } from 'rxjs/operators';
+import { Auth } from '@aws-amplify/auth';
 
 type Ratings = {
   name:string,
@@ -46,9 +47,12 @@ export class RankingComponent implements OnInit {
     end: new FormControl()
   });
   lastWeekCheckbox:boolean = false;
+  public onlyMeCheckbox:boolean = false;
   public error:string = ""
   public descriptionFilter: string = ''
   public searchFilter: string = ''
+  public userFilter: string = ''
+  public user: any
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -85,8 +89,15 @@ export class RankingComponent implements OnInit {
       const response = await this.db.ListBeerRatings(undefined,50000)
       this.loading = false
       // console.log(response)
-      for( const rating of response.items) {
-        this.createRanking(rating)
+      if (this.onlyMeCheckbox) {
+        await this.getUserInfo()
+        for( const rating of response.items) {
+          this.createRanking(rating, this.user.username)
+        }
+      } else {
+        for( const rating of response.items) {
+          this.createRanking(rating)
+        }
       }
       this.sortDataAndCreateRank()
       this.filterByRange()
@@ -150,7 +161,8 @@ export class RankingComponent implements OnInit {
         if(a.name == undefined) {
           return false
         }
-        return a.name.includes(this.searchFilter)
+        const keyword = this.searchFilter.toLowerCase();
+        return a.name.toLocaleLowerCase().indexOf(keyword) > -1; 
       })
     } else {
       this.sortDataAndCreateRank()
@@ -166,10 +178,15 @@ export class RankingComponent implements OnInit {
     return undefined
   }
 
-  createRanking(rating) {
+  createRanking(rating, username=undefined) {
     if (rating.Beer == undefined) {
       return
-    }  
+    }
+    if (username != undefined){
+      if (rating.userName != username) {
+        return
+      }
+    }
     const total = 
     (rating.smell
     + rating.color
@@ -186,6 +203,7 @@ export class RankingComponent implements OnInit {
       taste: rating.taste,
       total: total,
       userName: rating.userName,
+      ratingId: rating.id,
     }
     const ranking = this.getRankingIfAlreadyExisting(rating.Beer.name)
     if ( ranking === undefined ) {
@@ -291,6 +309,19 @@ export class RankingComponent implements OnInit {
       this.range.controls['start'].setValue(undefined)
       this.range.controls['end'].setValue(undefined)
     }
+  }
+
+  async getUserInfo() {
+    const data = await Auth.currentUserPoolUser()
+    this.user = {
+      username: data.username,
+      email: data.attributes.email,
+      phone: data.attributes.phone_number
+    }
+  }
+
+  setOnlyMe() {
+    this.getRanking()
   }
 
 }

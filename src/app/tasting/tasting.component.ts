@@ -9,6 +9,7 @@ export type Beer = {
   name: string;
   alcohol: number | null;
   description: string | null;
+  ratingId: string | null;
   createdAt: string;
   updatedAt: string;
 };
