@@ -53,6 +53,8 @@ export class RankingComponent implements OnInit {
   public searchFilter: string = ''
   public userFilter: string = ''
   public user: any
+  public allUsers: string[] = [];
+  public selectedUsers: string[] = []; // Multiple selection
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
@@ -120,7 +122,7 @@ export class RankingComponent implements OnInit {
       switch (sort.active) {
         case 'rank': return compare(a.rank, b.rank, isAsc);
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'description': return compare(a.name, b.name, isAsc);
+        case 'description': return compare(a.description, b.description, isAsc);
         case 'alcohol': return compare(a.alcohol, b.alcohol, isAsc);
         case 'smell': return compare(a.smell, b.smell, isAsc);
         case 'color': return compare(a.color, b.color, isAsc);
@@ -186,6 +188,14 @@ export class RankingComponent implements OnInit {
       if (rating.userName != username) {
         return
       }
+    }
+    // Collect all users
+    if (rating.userName && !this.allUsers.includes(rating.userName)) {
+      this.allUsers.push(rating.userName);
+    }
+    // If filtering on selected users
+    if (this.selectedUsers.length && !this.selectedUsers.includes(rating.userName)) {
+      return;
     }
     const total = 
     (rating.smell

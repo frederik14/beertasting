@@ -38,6 +38,7 @@ import { GeocacheComponent } from './geocache/geocache.component';
 import { from } from 'rxjs';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatSelectModule,
     // NgxCsvParserModule
   ],
   exports: [

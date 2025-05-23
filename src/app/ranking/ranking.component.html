@@ -10,6 +10,12 @@
     <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
     <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
   </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by Users</mat-label>
+    <mat-select [(value)]="selectedUsers" (selectionChange)="getRanking()" multiple>
+      <mat-option *ngFor="let user of allUsers" [value]="user">{{ user }}</mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-checkbox [(ngModel)]="lastWeekCheckbox" (click)="setRangeLastWeek()">Last Week</mat-checkbox>
   <mat-checkbox [(ngModel)]="onlyMeCheckbox" (click)="setOnlyMe()">Only Me</mat-checkbox>
   <mat-form-field> 
