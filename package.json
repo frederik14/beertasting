@@ -26,7 +26,6 @@
     "aws-amplify": "^3.3.3",
     "aws-amplify-angular": "^5.0.32",
     "core-js": "^2.5.4",
-    "ngx-csv-parser": "0.0.6",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
     "zone.js": "~0.10.2"
@@ -39,7 +38,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.12.67",
-    "codelyzer": "^5.1.2",
+    "codelyzer": "^6.0.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
