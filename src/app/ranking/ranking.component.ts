@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
-import { NgxCsvParser } from 'ngx-csv-parser';
+// import { NgxCsvParser } from 'ngx-csv-parser';
 import { APIService } from '../API.service';
 import { BeerRankComponent } from '../beer-rank/beer-rank.component';
 import { debounceTime } from 'rxjs/operators';
@@ -58,11 +58,8 @@ export class RankingComponent implements OnInit {
 
   @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
 
-  csvRecords: any[] = [];
-
   constructor(public db: APIService, 
-    public dialog: MatDialog,
-    private ngxCsvParser: NgxCsvParser) { }
+    public dialog: MatDialog,) { }
 
   ngOnInit() {
     this.getRanking()
@@ -264,46 +261,6 @@ export class RankingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-    });
-  }
-
-  fileChangeListener($event: any) {
-    const files = $event.srcElement.files;
-    
-    this.ngxCsvParser.parse(files[0], { header: true, delimiter: ',' })
-    .pipe().subscribe((result: Array<any>) => {
-      console.log('Result', result);
-      this.csvRecords = result;
-      for(const beer of this.csvRecords) {
-        const alcohol = Number(beer.Bier.match(/(.\(\d.*%\))/gm)[0].slice(2,-2))
-        console.log(alcohol)
-        beer.alcohol = alcohol
-        beer.Bier = beer.Bier.replace(/(.\(\d.*%\))/gm,'')
-      }
-      console.log(this.csvRecords)
-      for(const beer of this.csvRecords) {
-        this.db.CreateBeer({
-          name: beer.Bier,
-          alcohol: beer.alcohol,
-        }).then((db_beer)=>{
-          for(const name in beer) {
-            var score = beer[name]
-            if (name!=='alcohol' && name!=='Bier' && score !=='A'&& score !== '') {
-              console.log('name ', name, 'score ', score)
-              score = Number(score)
-              this.db.CreateBeerRating({
-                userName:name,
-                smell: score/10 ,
-                color: score/10,
-                branding: score/10,
-                taste: score/5,
-                description: 'Imported from excel',
-                beerRatingBeerId: db_beer.id
-              })
-            }
-          }
-        })
-      }
     });
   }
 

@@ -33,7 +33,6 @@ import { BeerRankComponent } from './beer-rank/beer-rank.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
-import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { GeocacheComponent } from './geocache/geocache.component';
 import { from } from 'rxjs';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -75,7 +74,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatCheckboxModule,
     MatSelectModule,
-    // NgxCsvParserModule
   ],
   exports: [
     BrowserModule,
