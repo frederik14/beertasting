@@ -2,8 +2,8 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 import { Injectable } from "@angular/core";
-import API, { graphqlOperation } from "@aws-amplify/api";
-import { GraphQLResult } from "@aws-amplify/api/lib/types";
+import { GraphQLAPI, graphqlOperation } from "@aws-amplify/api-graphql";
+import { Amplify } from '@aws-amplify/core';
 import { Observable } from "zen-observable-ts";
 
 export type CreateBeerTastingInput = {
@@ -932,7 +932,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <CreateBeerTastingMutation>response.data.createBeerTasting;
@@ -969,7 +969,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <UpdateBeerTastingMutation>response.data.updateBeerTasting;
@@ -1006,7 +1006,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBeerTastingMutation>response.data.deleteBeerTasting;
@@ -1059,7 +1059,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <CreateBeerMutation>response.data.createBeer;
@@ -1112,7 +1112,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <UpdateBeerMutation>response.data.updateBeer;
@@ -1165,7 +1165,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBeerMutation>response.data.deleteBeer;
@@ -1214,7 +1214,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <CreateBeerRatingMutation>response.data.createBeerRating;
@@ -1263,7 +1263,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <UpdateBeerRatingMutation>response.data.updateBeerRating;
@@ -1312,7 +1312,7 @@ export class APIService {
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBeerRatingMutation>response.data.deleteBeerRating;
@@ -1343,7 +1343,7 @@ export class APIService {
     const gqlAPIServiceArguments: any = {
       id
     };
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <GetBeerTastingQuery>response.data.getBeerTasting;
@@ -1380,7 +1380,7 @@ export class APIService {
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListBeerTastingsQuery>response.data.listBeerTastings;
@@ -1427,7 +1427,7 @@ export class APIService {
     const gqlAPIServiceArguments: any = {
       id
     };
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <GetBeerQuery>response.data.getBeer;
@@ -1473,7 +1473,7 @@ export class APIService {
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListBeersQuery>response.data.listBeers;
@@ -1516,7 +1516,7 @@ export class APIService {
     const gqlAPIServiceArguments: any = {
       id
     };
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <GetBeerRatingQuery>response.data.getBeerRating;
@@ -1563,14 +1563,14 @@ export class APIService {
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListBeerRatingsQuery>response.data.listBeerRatings;
   }
   OnCreateBeerTastingListener: Observable<
     OnCreateBeerTastingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnCreateBeerTasting {
         onCreateBeerTasting {
@@ -1595,11 +1595,11 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnCreateBeerTastingSubscription>;
+  ) as unknown as Observable<OnCreateBeerTastingSubscription>;
 
   OnUpdateBeerTastingListener: Observable<
     OnUpdateBeerTastingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnUpdateBeerTasting {
         onUpdateBeerTasting {
@@ -1624,11 +1624,11 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnUpdateBeerTastingSubscription>;
+  )  as unknown as Observable<OnUpdateBeerTastingSubscription>;
 
   OnDeleteBeerTastingListener: Observable<
     OnDeleteBeerTastingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnDeleteBeerTasting {
         onDeleteBeerTasting {
@@ -1653,9 +1653,9 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteBeerTastingSubscription>;
+  )  as unknown as Observable<OnDeleteBeerTastingSubscription>;
 
-  OnCreateBeerListener: Observable<OnCreateBeerSubscription> = API.graphql(
+  OnCreateBeerListener: Observable<OnCreateBeerSubscription> = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnCreateBeer {
         onCreateBeer {
@@ -1696,9 +1696,9 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnCreateBeerSubscription>;
+  )  as unknown as Observable<OnCreateBeerSubscription>;
 
-  OnUpdateBeerListener: Observable<OnUpdateBeerSubscription> = API.graphql(
+  OnUpdateBeerListener: Observable<OnUpdateBeerSubscription> = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnUpdateBeer {
         onUpdateBeer {
@@ -1739,9 +1739,9 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnUpdateBeerSubscription>;
+  )  as unknown as Observable<OnUpdateBeerSubscription>;
 
-  OnDeleteBeerListener: Observable<OnDeleteBeerSubscription> = API.graphql(
+  OnDeleteBeerListener: Observable<OnDeleteBeerSubscription> = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnDeleteBeer {
         onDeleteBeer {
@@ -1782,11 +1782,11 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteBeerSubscription>;
+  )  as unknown as Observable<OnDeleteBeerSubscription>;
 
   OnCreateBeerRatingListener: Observable<
     OnCreateBeerRatingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnCreateBeerRating {
         onCreateBeerRating {
@@ -1823,11 +1823,11 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnCreateBeerRatingSubscription>;
+  )  as unknown as Observable<OnCreateBeerRatingSubscription>;
 
   OnUpdateBeerRatingListener: Observable<
     OnUpdateBeerRatingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnUpdateBeerRating {
         onUpdateBeerRating {
@@ -1864,11 +1864,11 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnUpdateBeerRatingSubscription>;
+  )  as unknown as Observable<OnUpdateBeerRatingSubscription>;
 
   OnDeleteBeerRatingListener: Observable<
     OnDeleteBeerRatingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnDeleteBeerRating {
         onDeleteBeerRating {
@@ -1905,5 +1905,5 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteBeerRatingSubscription>;
+  )  as unknown as Observable<OnDeleteBeerRatingSubscription>;
 }

@@ -61,3 +61,5 @@ amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
 src/app/ranking/workspace.code-workspace
+
+.angular

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import API, { graphqlOperation } from "@aws-amplify/api";
+import { GraphQLAPI, graphqlOperation } from "@aws-amplify/api-graphql";
 import { Observable } from "zen-observable-ts";
+import { Amplify } from '@aws-amplify/core';
 
 export enum ModelAttributeTypes {
   binary = "binary",
@@ -202,7 +203,7 @@ export type OnDeleteBeerTastingSubscription = {
 })
 export class TastingsService {
 
-  OnCreateBeerListener: Observable<OnCreateBeerSubscription> = API.graphql(
+  OnCreateBeerListener: Observable<OnCreateBeerSubscription> = GraphQLAPI.graphql(Amplify,
     graphqlOperation(
       `subscription OnCreateBeer {
         onCreateBeer {
@@ -243,7 +244,7 @@ export class TastingsService {
         }
       }`
     )
-  ) as Observable<OnCreateBeerSubscription>;
+  ) as unknown as Observable<OnCreateBeerSubscription>;
 
   async ListBeerTastings(
     filter?: ModelBeerTastingFilterInput,
@@ -286,7 +287,7 @@ export class TastingsService {
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
     }
-    const response = (await API.graphql(
+    const response = (await GraphQLAPI.graphql(Amplify,
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListBeerTastingsQuery>response.data.listBeerTastings;
@@ -294,7 +295,7 @@ export class TastingsService {
 
   OnCreateBeerTastingListener: Observable<
   OnCreateBeerTastingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
   graphqlOperation(
     `subscription OnCreateBeerTasting {
       onCreateBeerTasting {
@@ -319,11 +320,11 @@ export class TastingsService {
       }
     }`
   )
-  ) as Observable<OnCreateBeerTastingSubscription>;
+  ) as unknown as Observable<OnCreateBeerTastingSubscription>;
 
   OnUpdateBeerTastingListener: Observable<
   OnUpdateBeerTastingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
   graphqlOperation(
     `subscription OnUpdateBeerTasting {
       onUpdateBeerTasting {
@@ -348,11 +349,11 @@ export class TastingsService {
       }
     }`
   )
-  ) as Observable<OnUpdateBeerTastingSubscription>;
+  ) as unknown as Observable<OnUpdateBeerTastingSubscription>;
 
   OnDeleteBeerTastingListener: Observable<
   OnDeleteBeerTastingSubscription
-  > = API.graphql(
+  > = GraphQLAPI.graphql(Amplify,
   graphqlOperation(
     `subscription OnDeleteBeerTasting {
       onDeleteBeerTasting {
@@ -377,5 +378,5 @@ export class TastingsService {
       }
     }`
   )
-  ) as Observable<OnDeleteBeerTastingSubscription>;
+  ) as unknown as Observable<OnDeleteBeerTastingSubscription>;
 }

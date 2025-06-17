@@ -8,10 +8,11 @@ import { LoginComponent } from './login/login.component';
 import { RankingComponent } from './ranking/ranking.component';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-import Amplify from 'aws-amplify';
-import awsconfig from '../aws-exports';
 
-Amplify.configure(awsconfig);
+import { Amplify } from 'aws-amplify';
+import amplifyConfig from '../aws-exports'; // Adjust if your path is different
+
+Amplify.configure(amplifyConfig);
 
 import { TastingsComponent } from './tastings/tastings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

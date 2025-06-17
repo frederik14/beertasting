@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 
 @Component({
@@ -6,22 +6,25 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'zbl-dash';
   user: CognitoUserInterface | undefined;
   authState: AuthState;
+  private unsubscribeAuthUIState: (() => void) | undefined;
 
   constructor(private ref: ChangeDetectorRef) {}
 
   ngOnInit() {
-    onAuthUIStateChange((authState, authData) => {
+    this.unsubscribeAuthUIState = onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
       this.ref.detectChanges();
-    })
+    });
   }
 
   ngOnDestroy() {
-    return onAuthUIStateChange;
+    if (this.unsubscribeAuthUIState) {
+      this.unsubscribeAuthUIState();
+    }
   }
 }
