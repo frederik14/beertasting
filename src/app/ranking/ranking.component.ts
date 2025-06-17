@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
 // import { NgxCsvParser } from 'ngx-csv-parser';
@@ -42,9 +42,9 @@ export class RankingComponent implements OnInit {
   public ranking: Ranking[] = [];
   public sortedData: Ranking[]
   loading:boolean = false
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
+  range = new UntypedFormGroup({
+    start: new UntypedFormControl(),
+    end: new UntypedFormControl()
   });
   lastWeekCheckbox:boolean = false;
   public onlyMeCheckbox:boolean = false;

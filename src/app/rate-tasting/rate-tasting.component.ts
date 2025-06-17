@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddTastingComponent } from '../add-tasting/add-tasting.component';
 import { Beer } from '../tasting/tasting.component';
@@ -18,7 +18,7 @@ type User = {
   styleUrls: ['./rate-tasting.component.scss']
 })
 export class RateTastingComponent implements OnInit {
-  public createRating: FormGroup
+  public createRating: UntypedFormGroup
   public user: any
   public total: number
   public submitted: boolean = false
@@ -28,7 +28,7 @@ export class RateTastingComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
     @Inject(MAT_DIALOG_DATA) public beer: any,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public db: APIService
   ) {
     this.createRating = this.formBuilder.group({

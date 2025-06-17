@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, Validators } from '@angular/forms';
 import { APIService } from './../API.service';
 
 @Component({
@@ -9,10 +9,10 @@ import { APIService } from './../API.service';
   styleUrls: ['./add-tasting.component.scss']
 })
 export class AddTastingComponent {
-  createTasting:FormGroup;
+  createTasting:UntypedFormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<AddTastingComponent>, public formBuilder : FormBuilder, public db: APIService) {
+    public dialogRef: MatDialogRef<AddTastingComponent>, public formBuilder : UntypedFormBuilder, public db: APIService) {
       this.createTasting = this.formBuilder.group({
         location: ['', [Validators.required]],
         beers: this.formBuilder.array([
@@ -49,13 +49,13 @@ export class AddTastingComponent {
   }
 
   addBeer() {
-    const control = <FormArray>this.createTasting.get('beers')['controls'];
+    const control = <UntypedFormArray>this.createTasting.get('beers')['controls'];
     console.log('full form ',this.createTasting)
     control.push(this.getBeer());
   }
 
   removeBeer(i: number) {
-    const control = <FormArray>this.createTasting.controls['beers'];
+    const control = <UntypedFormArray>this.createTasting.controls['beers'];
     control.removeAt(i);
   }
 

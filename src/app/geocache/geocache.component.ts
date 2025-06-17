@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-geocache',
@@ -7,11 +7,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./geocache.component.scss']
 })
 export class GeocacheComponent implements OnInit {
-  geochache: FormGroup
+  geochache: UntypedFormGroup
   correct : Boolean
   answer: Number
 
-  constructor(public formBuilder : FormBuilder,) {
+  constructor(public formBuilder : UntypedFormBuilder,) {
   }
 
   ngOnInit(): void {
