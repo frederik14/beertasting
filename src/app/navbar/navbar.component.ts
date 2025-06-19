@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { signOut } from 'aws-amplify/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -34,4 +35,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  async logout() {
+    await signOut();
+    window.location.reload();
+  }
 }

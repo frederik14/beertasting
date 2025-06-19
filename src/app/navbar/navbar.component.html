@@ -22,9 +22,10 @@
                     <mat-divider></mat-divider>
                 </div>
             </ng-container>
-            <!-- <button mat-menu-item>
-                <amplify-sign-out></amplify-sign-out>
-            </button> -->
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                Logout
+            </button>
         </mat-menu>
     </ng-container>
 </mat-toolbar>
