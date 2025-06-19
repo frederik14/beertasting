@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddTastingComponent } from '../add-tasting/add-tasting.component';
 import { Beer } from '../tasting/tasting.component';
 import { APIService } from './../API.service';
-import { Auth } from '@aws-amplify/auth';
+import { getCurrentUser } from 'aws-amplify/auth';
 
 type User = {
   username: string,
@@ -28,7 +28,7 @@ export class RateTastingComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
     @Inject(MAT_DIALOG_DATA) public beer: any,
-    public formBuilder: UntypedFormBuilder,
+    @Inject(UntypedFormBuilder) public formBuilder: UntypedFormBuilder,
     public db: APIService
   ) {
     this.createRating = this.formBuilder.group({
@@ -49,12 +49,11 @@ export class RateTastingComponent implements OnInit {
   }
 
   async getUserInfo() {
-    const data = await Auth.currentUserPoolUser()
+    const data = await getCurrentUser()
     this.user = {
       username: data.username,
-      email: data.attributes.email,
-      phone: data.attributes.phone_number
     }
+
     this.rating = await this.getRating()
     if (this.rating) {
       this.rated = true

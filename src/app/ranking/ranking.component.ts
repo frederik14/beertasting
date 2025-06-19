@@ -6,7 +6,7 @@ import {Sort} from '@angular/material/sort';
 import { APIService } from '../API.service';
 import { BeerRankComponent } from '../beer-rank/beer-rank.component';
 import { debounceTime } from 'rxjs/operators';
-import { Auth } from '@aws-amplify/auth';
+import { getCurrentUser } from 'aws-amplify/auth';
 
 type Ratings = {
   name:string,
@@ -279,11 +279,9 @@ export class RankingComponent implements OnInit {
   }
 
   async getUserInfo() {
-    const data = await Auth.currentUserPoolUser()
+    const data = await getCurrentUser()
     this.user = {
       username: data.username,
-      email: data.attributes.email,
-      phone: data.attributes.phone_number
     }
   }
 

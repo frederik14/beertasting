@@ -4,10 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { RankingComponent } from './ranking/ranking.component';
 
-import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
 import { Amplify } from 'aws-amplify';
 import amplifyConfig from '../aws-exports'; // Adjust if your path is different
@@ -43,7 +42,6 @@ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RankingComponent,
     TastingsComponent,
     TastingComponent,
@@ -58,7 +56,7 @@ import { MatSelectModule } from '@angular/material/select';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AmplifyUIAngularModule,
+    AmplifyAuthenticatorModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -81,7 +79,6 @@ import { MatSelectModule } from '@angular/material/select';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AmplifyUIAngularModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,

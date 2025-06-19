@@ -4,7 +4,7 @@
 import { Injectable } from "@angular/core";
 import { GraphQLAPI, graphqlOperation } from "@aws-amplify/api-graphql";
 import { Amplify } from '@aws-amplify/core';
-import { Observable } from "zen-observable-ts";
+import { Observable } from 'rxjs';
 
 export type CreateBeerTastingInput = {
   id?: string | null;

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GeocacheComponent } from './geocache/geocache.component';
-import { LoginComponent } from './login/login.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { TastingsComponent } from './tastings/tastings.component';
 

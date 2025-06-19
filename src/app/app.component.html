@@ -1,6 +1,6 @@
-<amplify-authenticator class="center">
-    <div class="no-center">
-        <app-navbar></app-navbar>
-        <router-outlet></router-outlet>
-    </div>
+<amplify-authenticator>
+  <ng-template amplifySlot="authenticated">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+  </ng-template>
 </amplify-authenticator>

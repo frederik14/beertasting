@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { GraphQLAPI, graphqlOperation } from "@aws-amplify/api-graphql";
-import { Observable } from "zen-observable-ts";
+import { Observable } from 'rxjs';
 import { Amplify } from '@aws-amplify/core';
 
 export enum ModelAttributeTypes {
