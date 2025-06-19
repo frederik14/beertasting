@@ -24,6 +24,7 @@ export class RateTastingComponent implements OnInit {
   public submitted: boolean = false
   public rating: any
   public rated: boolean = false
+  public errorMsg: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<AddTastingComponent>,
@@ -88,17 +89,29 @@ export class RateTastingComponent implements OnInit {
   }
 
   rateBeer() {
-    this.total =
-      (this.createRating.controls.smell.value
-        + this.createRating.controls.color.value
-        + this.createRating.controls.branding.value
-        + this.createRating.controls.taste.value) * 2
+    this.errorMsg = '';
+    const smell = this.createRating.controls.smell.value;
+    const color = this.createRating.controls.color.value;
+    const branding = this.createRating.controls.branding.value;
+    const taste = this.createRating.controls.taste.value;
+
+    if (
+      smell < 0 || smell > 10 ||
+      color < 0 || color > 10 ||
+      branding < 0 || branding > 10 ||
+      taste < 0 || taste > 20
+    ) {
+      this.errorMsg = 'Smell, Color, and Branding must be between 0 and 10. Taste must be between 0 and 20.';
+      return;
+    }
+
+    this.total = (smell + color + branding + taste) * 2;
     this.db.CreateBeerRating({
       userName: this.user.username,
-      smell: this.createRating.controls.smell.value,
-      color: this.createRating.controls.color.value,
-      branding: this.createRating.controls.branding.value,
-      taste: this.createRating.controls.taste.value,
+      smell,
+      color,
+      branding,
+      taste,
       description: this.createRating.controls.taste.value,
       beerRatingBeerId: this.beer.id
     })
@@ -106,21 +119,33 @@ export class RateTastingComponent implements OnInit {
   }
 
   updateBeer() {
-    this.total =
-      (this.createRating.controls.smell.value
-        + this.createRating.controls.color.value
-        + this.createRating.controls.branding.value
-        + this.createRating.controls.taste.value) * 2
+    this.errorMsg = '';
+    const smell = this.createRating.controls.smell.value;
+    const color = this.createRating.controls.color.value;
+    const branding = this.createRating.controls.branding.value;
+    const taste = this.createRating.controls.taste.value;
+
+    if (
+      smell < 0 || smell > 10 ||
+      color < 0 || color > 10 ||
+      branding < 0 || branding > 10 ||
+      taste < 0 || taste > 20
+    ) {
+      this.errorMsg = 'Smell, Color, and Branding must be between 0 and 10. Taste must be between 0 and 20.';
+      return;
+    }
+
+    this.total = (smell + color + branding + taste) * 2;
     const user = this.user ? this.user.username  : this.beer?.userName
     const beer_id = this.beer?.id ? this.beer.id  : this.beer?.beerId
     const rating_id = this.rating?.id ? this.rating.id  : this.beer?.ratingId
     this.db.UpdateBeerRating({
       id: rating_id,
       userName: user,
-      smell: this.createRating.controls.smell.value,
-      color: this.createRating.controls.color.value,
-      branding: this.createRating.controls.branding.value,
-      taste: this.createRating.controls.taste.value,
+      smell,
+      color,
+      branding,
+      taste,
       description: this.createRating.controls.taste.value,
       beerRatingBeerId: beer_id
     })
