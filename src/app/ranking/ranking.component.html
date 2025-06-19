@@ -17,7 +17,6 @@
     </mat-select>
   </mat-form-field>
   <mat-checkbox [(ngModel)]="lastWeekCheckbox" (click)="setRangeLastWeek()">Last Week</mat-checkbox>
-  <mat-checkbox [(ngModel)]="onlyMeCheckbox" (click)="setOnlyMe()">Only Me</mat-checkbox>
   <mat-form-field> 
     <mat-label>Search</mat-label>
     <input matInput placeholder="Description" [(ngModel)]="searchFilter" (change)="filterBySearchName()">           

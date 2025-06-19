@@ -47,7 +47,6 @@ export class RankingComponent implements OnInit {
     end: new UntypedFormControl()
   });
   lastWeekCheckbox:boolean = false;
-  public onlyMeCheckbox:boolean = false;
   public error:string = ""
   public descriptionFilter: string = ''
   public searchFilter: string = ''
@@ -88,15 +87,8 @@ export class RankingComponent implements OnInit {
       const response = await this.db.ListBeerRatings(undefined,50000)
       this.loading = false
       // console.log(response)
-      if (this.onlyMeCheckbox) {
-        await this.getUserInfo()
-        for( const rating of response.items) {
-          this.createRanking(rating, this.user.username)
-        }
-      } else {
-        for( const rating of response.items) {
-          this.createRanking(rating)
-        }
+      for( const rating of response.items) {
+        this.createRanking(rating)
       }
       this.sortDataAndCreateRank()
       this.filterByRange()
@@ -276,17 +268,6 @@ export class RankingComponent implements OnInit {
       this.range.controls['start'].setValue(undefined)
       this.range.controls['end'].setValue(undefined)
     }
-  }
-
-  async getUserInfo() {
-    const data = await getCurrentUser()
-    this.user = {
-      username: data.username,
-    }
-  }
-
-  setOnlyMe() {
-    this.getRanking()
   }
 
 }
